@@ -46,6 +46,15 @@ app.get('/', async function (request, response) {
    response.render('index.liquid', {person: personResponseJSON.data})
 })
 
+app.get('/test', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/' + personID)
+
+// Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
+const personResponseJSON = await personResponse.json()
+   // Render index.liquid uit de Views map en geef de opgehaalde data mee, in een variabele genaamd person
+   response.render('oefenen.liquid', {person: personResponseJSON.data})
+})
+
 // Had je meer pagina's in je oude visitekaartje? Zoals een contact.html?
 // Maak daar dan meer Routes voor aan, en koppel ze aan Views
 // app.get('/contact', function (request, response) {
